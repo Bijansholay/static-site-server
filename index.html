@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NGINX Static Site Setup Guide</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>NGINX Static Site Deployment</h1>
+            <p>Complete guide to deploy your static website</p>
+        </header>
+
+        <main>
+            <section class="step">
+                <h2>1. Install NGINX</h2>
+                <div class="code-block">
+                    <code>sudo apt update<br>
+                    sudo apt install nginx</code>
+                </div>
+            </section>
+
+            <section class="step">
+                <h2>2. Start NGINX Service</h2>
+                <div class="code-block">
+                    <code>sudo systemctl start nginx<br>
+                    sudo systemctl enable nginx</code>
+                </div>
+            </section>
+
+            <section class="step">
+                <h2>3. Configure Site</h2>
+                <p>Create configuration file:</p>
+                <div class="code-block">
+                    <code>sudo nano /etc/nginx/sites-available/mysite</code>
+                </div>
+                <p>Add configuration:</p>
+                <div class="code-block">
+                    <code>server {<br>
+                    &nbsp;&nbsp;listen 80;<br>
+                    &nbsp;&nbsp;server_name your-domain.com;<br>
+                    &nbsp;&nbsp;root /var/www/mysite;<br>
+                    &nbsp;&nbsp;index index.html;<br>
+                    }</code>
+                </div>
+            </section>
+
+            <section class="step">
+                <h2>4. Enable Site</h2>
+                <div class="code-block">
+                    <code>sudo ln -s /etc/nginx/sites-available/mysite /etc/nginx/sites-enabled/<br>
+                    sudo nginx -t<br>
+                    sudo systemctl reload nginx</code>
+                </div>
+            </section>
+
+            <section class="step">
+                <h2>5. Deploy Files</h2>
+                <div class="code-block">
+                    <code>sudo mkdir -p /var/www/mysite<br>
+                    sudo cp -r * /var/www/mysite/<br>
+                    sudo chown -R www-data:www-data /var/www/mysite</code>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <p>Your static site is now live!</p>
+        </footer>
+    </div>
+</body>
+</html>
