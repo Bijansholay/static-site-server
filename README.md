@@ -46,3 +46,6 @@ A simple guide to deploy static websites using NGINX.
    ```
 
 Your static site is now live!
+
+
+[l](https://roadmap.sh/projects/static-site-server)
